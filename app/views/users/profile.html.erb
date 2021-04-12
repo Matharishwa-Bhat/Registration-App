@@ -1,0 +1,61 @@
+<div class="main-container">
+  <h1 class="main-heading">Profile Info</h1>
+  <% unless @admin_user %>
+    <h2 class="heading-color">Name: <span><%= @user.name  %></span></h2>
+    <h2 class="heading-color">Email: <span><%= @user.email %></span></h2>
+    <h2 class="heading-color">Phone Number: <span><%= @user.phone_number  %></span></h2>
+  <%  end %>
+  <% if @user.picture.attached? %>
+    <h2 class="heading-color">Profile Pic: <div style="padding-left: 10%"><%=image_tag(@user.picture, style: "width: 150px") %></div></h2>
+  <%end %>
+  <%= form_for(@user, url: "/user/#{@user.id}/update", method: :put) do |f| %>
+    <div class="field">
+      <div class="heading-color"><%= f.label "Profile Picture" %></div>
+      <%= f.file_field :picture, autofocus: true %>
+    </div>
+    <% if @admin_user %>
+      <div class="field">
+        <div class="heading-color"><%= f.label :name %></div>
+        <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+      </div>
+      <div class="field">
+        <div class="heading-color"><%= f.label :email %></div>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+      <div class="field">
+        <div class="heading-color"><%= f.label "Phone Number"%></div>
+        <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number" %>
+      </div>
+    <% end %>
+    <div class="field main-sub-heading">
+      <h3><%= f.label "Address: " %></h3>
+    </div>
+    <div class="field">
+      <div class="heading-color"><%= f.label "Adress Line" %></div>
+      <%= f.text_field :address_line, autofocus: true, autocomplete: "address_line" %>
+    </div>
+    <div class="field">
+      <div class="heading-color"><%= f.label "Landmark" %></div>
+      <%= f.text_field :landmark, autofocus: true, autocomplete: "landmark" %>
+    </div>
+    <div class="field">
+      <div class="heading-color"><%= f.label "Street" %></div>
+      <%= f.text_field :street, autofocus: true, autocomplete: "street" %>
+    </div>
+    <div class="field">
+      <div class="heading-color"><%= f.label "City" %></div>
+      <%= f.text_field :city, autofocus: true, autocomplete: "city" %>
+    </div>
+    <div class="field">
+      <div class="heading-color"><%= f.label "State" %></div>
+      <%= f.text_field :state, autofocus: true, autocomplete: "state" %>
+    </div>
+    <div class="field">
+      <div class="heading-color"><%= f.label "Pin Code" %></div>
+      <%= f.text_field :pin_code, autofocus: true, autocomplete: "pin_code" %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Update" %>
+    </div>
+  <%end %>
+</div>

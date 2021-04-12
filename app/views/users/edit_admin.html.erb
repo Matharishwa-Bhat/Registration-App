@@ -1,0 +1,24 @@
+<div class="main-container">
+  <h1 class="main-heading">Admin User Profile</h1>
+  <h3 class="heading-color">Name: <%=@admin_user.name %></h3>
+  <h2 class="heading-color">Profile Pic: <%=image_tag(@admin_user.picture, style: "width: 150px") if @admin_user.picture.attached?%></h2>
+  <h3 class="heading-color">Email: <%=@admin_user.email %></h3>
+  <h3 class="heading-color">Address Line: <%=@admin_user.address_line %></h3>
+  <h3 class="heading-color">Landmark: <%=@admin_user.landmark %></h3>
+  <h3 class="heading-color">City: <%=@admin_user.city %></h3>
+  <h3 class="heading-color">State:  <%=@admin_user.state %></h3>
+  <h3 class="heading-color">Pin Code: <%=@admin_user.pin_code %></h3>
+  <%= form_for(@admin_user, url: "/user/#{@admin_user.id}/update-admin", method: :put) do |f| %>
+    <div class="field">
+      <div class="heading-color"><%= f.label "Profile Picture" %></div>
+      <%= f.file_field :picture, autofocus: true %>
+    </div>
+    <div class="field">
+      <div class="heading-color"><%= f.label "phone_number" %></div>
+      <%= f.text_field :phone_number, autofocus: true %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Update" %>
+    </div>
+  <%end %>
+</div>

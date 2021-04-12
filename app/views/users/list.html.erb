@@ -1,0 +1,14 @@
+<h2 class="main-sub-heading">Admin User</h2>
+<ul>
+  <li><%=@admin_user.name %>
+    <%= link_to "Edit Admin", "/user/#{@admin_user.id}/edit", class: 'nav-link' %></li>
+</ul>
+<div class="main-container">
+  <h2 class="main-sub-heading">User List</h2>
+  <%@users.each do |user| %>
+    <ul>
+      <li><%=user.name %>
+        <%= link_to "Edit", "/users/#{user.id}/edit", class: 'nav-link' %></li>
+    </ul>
+  <% end %>
+</div>
